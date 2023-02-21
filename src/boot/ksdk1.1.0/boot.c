@@ -61,6 +61,7 @@
 #include "errstrs.h"
 #include "gpio_pins.h"
 #include "devSSD1331.h"
+#include "devINA219.h"
 volatile WarpSPIDeviceState                     deviceSSD1331State;
 #include "SEGGER_RTT.h"
 
@@ -150,7 +151,12 @@ volatile WarpSPIDeviceState                     deviceSSD1331State;
 
 #if (WARP_BUILD_ENABLE_DEVCCS811)
 	#include "devCCS811.h"
-	olatile WarpI2CDeviceState			deviceCCS811State;
+	volatile WarpI2CDeviceState			deviceCCS811State;
+#endif
+
+#if (WARP_BUILD_ENABLE_INA219)
+	#include "devINA219.h"
+	volatile WarpI2CDeviceState			deviceINA219State;
 #endif
 
 #if (WARP_BUILD_ENABLE_DEVAMG8834)
@@ -1608,6 +1614,7 @@ main(void)
 	/*
 	 *	Initialize all the sensors
 	 */
+
 	#if (WARP_BUILD_ENABLE_DEVBMX055)
 		initBMX055accel(0x18	/* i2cAddress */,	&deviceBMX055accelState,	kWarpDefaultSupplyVoltageMillivoltsBMX055accel	);
 		initBMX055gyro(	0x68	/* i2cAddress */,	&deviceBMX055gyroState,		kWarpDefaultSupplyVoltageMillivoltsBMX055gyro	);
@@ -1616,6 +1623,10 @@ main(void)
 
 	#if (WARP_BUILD_ENABLE_DEVMMA8451Q)
 		initMMA8451Q(	0x1D	/* i2cAddress */,	kWarpDefaultSupplyVoltageMillivoltsMMA8451Q	);
+	#endif
+
+	#if (WARP_BUILD_ENABLE_DEVINA219)
+		initINA219( 0x40 /*i2c*/, kWarpDefaultSupplyVoltageMillivoltsINA219);
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVLPS25H)

@@ -100,6 +100,7 @@ ADD_EXECUTABLE(Warp
     "${ProjDirPath}/../../../../platform/drivers/src/lpuart/fsl_lpuart_irq.c"
     "${ProjDirPath}/../../../../platform/startup/MKL03Z4/system_MKL03Z4.c"
     "${ProjDirPath}/../../src/devSSD1331.c"
+    "${ProjDirPath}/../../src/devINA219.c"
     "${ProjDirPath}/../../../../platform/startup/startup.c"
     "${ProjDirPath}/../../../../platform/startup/startup.h"
     "${ProjDirPath}/../../../../boards/Warp/gpio_pins.c"
