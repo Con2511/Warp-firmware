@@ -60,6 +60,8 @@
 #include "warp.h"
 #include "errstrs.h"
 #include "gpio_pins.h"
+#include "devSSD1331.h"
+volatile WarpSPIDeviceState                     deviceSSD1331State;
 #include "SEGGER_RTT.h"
 
 
@@ -1994,9 +1996,10 @@ main(void)
 			warpPrint("Should not get here...");
 		}
 	#endif
-
+	devSSD1331init();
 	while (1)
 	{
+		 //devSSD1331init();
 		/*
 		 *	Do not, e.g., lowPowerPinStates() on each iteration, because we actually
 		 *	want to use menu to progressiveley change the machine state with various

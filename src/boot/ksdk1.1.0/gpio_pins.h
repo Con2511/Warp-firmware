@@ -67,7 +67,7 @@ enum _gpio_pins
 		kWarpPinSPI_SCK			= GPIO_MAKE_PIN(HW_GPIOB, 0),
 		kWarpPinFPGA_nCS		= GPIO_MAKE_PIN(HW_GPIOB, 1),
 	#endif
-
+	kWarpPinSSD1331_SPI_nCS 		= GPIO_MAKE_PIN(HW_GPIOB,13),
 	#if (WARP_BUILD_ENABLE_FRDMKL03)
 		kWarpPinUnusedPTB0			= GPIO_MAKE_PIN(HW_GPIOB, 0),
 		kWarpPinUnusedPTB1			= GPIO_MAKE_PIN(HW_GPIOB, 1),

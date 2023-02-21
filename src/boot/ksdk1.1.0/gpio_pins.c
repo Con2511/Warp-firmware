@@ -58,6 +58,12 @@ gpio_output_pin_user_config_t	outputPins[] = {
 			.config.slewRate = kPortSlowSlewRate,
 			.config.driveStrength = kPortLowDriveStrength,
 		},
+		{
+			.pinName =kWarpPinSSD1331_SPI_nCS,
+			.config.outputLogic = 1,
+			.config.slewRate = kPortSlowSlewRate,
+			.config.driveStrength = kPortLowDriveStrength
+		},
 
 		#if (WARP_BUILD_ENABLE_DEVIS25xP)
 		{
