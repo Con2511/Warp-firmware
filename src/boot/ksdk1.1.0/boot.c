@@ -61,7 +61,6 @@
 #include "errstrs.h"
 #include "gpio_pins.h"
 #include "devSSD1331.h"
-#include "devINA219.h"
 volatile WarpSPIDeviceState                     deviceSSD1331State;
 #include "SEGGER_RTT.h"
 
