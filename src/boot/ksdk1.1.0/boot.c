@@ -1635,7 +1635,7 @@ main(void)
 				warpPrint("Error\n");
 			}
 			else{
-				warpPrint("%d uA\n", current)
+				warpPrint("%d uA\n", current);
 			}
 		}
 
