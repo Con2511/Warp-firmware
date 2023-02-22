@@ -1613,7 +1613,8 @@ main(void)
 	/*
 	 *	Initialize all the sensors
 	 */
-
+	devSSD1331init(); /*Place here to turn on screen, so current measurement can be done in the if statement for ease (don't need to mess with menus)*/
+	
 	#if (WARP_BUILD_ENABLE_DEVBMX055)
 		initBMX055accel(0x18	/* i2cAddress */,	&deviceBMX055accelState,	kWarpDefaultSupplyVoltageMillivoltsBMX055accel	);
 		initBMX055gyro(	0x68	/* i2cAddress */,	&deviceBMX055gyroState,		kWarpDefaultSupplyVoltageMillivoltsBMX055gyro	);
@@ -1626,6 +1627,8 @@ main(void)
 
 	#if (WARP_BUILD_ENABLE_DEVINA219)
 		initINA219( 0x40 /*i2c*/, kWarpDefaultSupplyVoltageMillivoltsINA219);
+		//Add code to measure and print current measurements
+		
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVLPS25H)
@@ -2006,7 +2009,7 @@ main(void)
 			warpPrint("Should not get here...");
 		}
 	#endif
-	devSSD1331init();
+	//devSSD1331init();
 	while (1)
 	{
 		 //devSSD1331init();
