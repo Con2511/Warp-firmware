@@ -197,7 +197,7 @@ unsigned int
 devINA219_current(void){
 	uint16_t current;
 	if (readSensorRegisterINA219(0X04,2) !=kWarpStatusOK)
-		return 0;
+		return 0xFFFF;
 	
 	current= (uint16_t)(
 		deviceINA219State.i2cBuffer[1] |
