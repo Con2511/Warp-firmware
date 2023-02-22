@@ -36,10 +36,10 @@
 	POSSIBILITY OF SUCH DAMAGE.
 */
 
+
 void		initINA219(const uint8_t i2cAddress, uint16_t operatingVoltageMillivolts);
 WarpStatus	readSensorRegisterINA219(uint8_t deviceRegister, int numberOfBytes);
-WarpStatus	writeSensorRegisterINA219(uint8_t deviceRegister,
-					uint16_t payloadBtye);
+WarpStatus	writeSensorRegisterINA219(uint8_t deviceRegister, uint16_t payloadBtye);
 //WarpStatus	//configureSensorINA219(uint8_t payloadF_SETUP, uint8_t payloadCTRL_REG1);
 WarpStatus devINA219_write_pointer(uint8_t deviceRegister);
 unsigned int devINA219_current(void);
