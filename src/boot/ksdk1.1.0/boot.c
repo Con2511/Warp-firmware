@@ -153,7 +153,7 @@ volatile WarpSPIDeviceState                     deviceSSD1331State;
 	volatile WarpI2CDeviceState			deviceCCS811State;
 #endif
 
-#if (WARP_BUILD_ENABLE_INA219)
+#if (WARP_BUILD_ENABLE_DEVINA219)
 	#include "devINA219.h"
 	volatile WarpI2CDeviceState			deviceINA219State;
 #endif
@@ -1628,7 +1628,7 @@ main(void)
 	#if (WARP_BUILD_ENABLE_DEVINA219)
 		initINA219( 0x40 /*i2c*/, kWarpDefaultSupplyVoltageMillivoltsINA219);
 		//Add code to measure and print current measurements
-		
+
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVLPS25H)
