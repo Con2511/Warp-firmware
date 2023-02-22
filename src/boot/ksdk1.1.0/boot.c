@@ -1628,6 +1628,7 @@ main(void)
 	#if (WARP_BUILD_ENABLE_DEVINA219)
 		initINA219( 0x40 /*i2c*/, kWarpDefaultSupplyVoltageMillivoltsINA219);
 		//Add code to measure and print current measurements
+		warpPrint("Current(mA),\n")
 		int current;
 		for (size_t i=0; i<1000; i++){
 			current = (uint16_t) devINA219_current();
@@ -1635,7 +1636,7 @@ main(void)
 				warpPrint("Error\n");
 			}
 			else{
-				warpPrint("%d uA\n", current);
+				warpPrint("%d uA,\n", current);
 			}
 		}
 
