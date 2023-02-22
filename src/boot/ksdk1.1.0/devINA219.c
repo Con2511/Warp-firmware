@@ -203,7 +203,7 @@ devINA219_current(void){
 		deviceINA219State.i2cBuffer[1] |
         deviceINA219State.i2cBuffer[0] << 8
 	);
-	return current;
+	return (int) current*10;
 
 }
 
