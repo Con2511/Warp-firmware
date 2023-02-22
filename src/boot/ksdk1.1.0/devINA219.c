@@ -209,7 +209,7 @@ devINA219_current(void){
 
 WarpStatus
 devINA219_write_pointer(uint8_t deviceRegister){
-	uint8_t		payloadByte[2];
+	uint8_t		commandByte[1];
 	i2c_status_t	status;
 
 	switch (deviceRegister)
