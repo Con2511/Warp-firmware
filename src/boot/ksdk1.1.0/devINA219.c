@@ -36,7 +36,7 @@
 	POSSIBILITY OF SUCH DAMAGE.
 */
 #include <stdlib.h>
-#include <math.h>>
+#include <math.h>
 /*
  *	config.h needs to come first
  */
@@ -70,7 +70,7 @@ initINA219(const uint8_t i2cAddress, uint16_t operatingVoltageMillivolts)
 	deviceINA219State.i2cAddress			= i2cAddress;
 	deviceINA219State.operatingVoltageMillivolts	= operatingVoltageMillivolts;
 
-	writeSensorRegisterINA219(0x00, 0b001100110011111);//sets Adc settings
+	writeSensorRegisterINA219(0x00, 0x199F);//sets Adc settings
 	writeSensorRegisterINA219(0x05,0xA000);//need to check
 
 	devINA219_write_pointer(0x04);
