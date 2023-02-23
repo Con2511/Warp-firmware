@@ -73,7 +73,7 @@ initINA219(const uint8_t i2cAddress, uint16_t operatingVoltageMillivolts)
 	writeSensorRegisterINA219(0x00, 0x199F);//sets Adc settings
 	writeSensorRegisterINA219(0x05,0xA000);//need to check
 
-	devINA219_write_pointer(0x04);
+	//devINA219_write_pointer(0x04);
 	return;
 }
 
@@ -195,6 +195,8 @@ readSensorRegisterINA219(uint8_t deviceRegister, int numberOfBytes)
 }
 unsigned int
 devINA219_current(void){
+	if (devINA219_write_pointer(0x04)!=kWarpStatusOK)
+		return 0xFFFF;
 	uint16_t current;
 	if (readSensorRegisterINA219(0X04,2) !=kWarpStatusOK)
 		return 0xFFFF;
