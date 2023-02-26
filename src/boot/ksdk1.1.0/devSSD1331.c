@@ -194,6 +194,7 @@ stand(void){
 	for(size_t i=0; i<50;i++){
 		drawPixel(30+i,30+i,0xFF,0x00,0x00);
 	}
+	return 0;
 }
 int
 drawPixel(uint8_t x, uint8_t y, uint8_t green, uint8_t red, uint8_t blue){
@@ -205,4 +206,5 @@ drawPixel(uint8_t x, uint8_t y, uint8_t green, uint8_t red, uint8_t blue){
 	writeCommand(red);
 	writeCommand(green);
 	writeCommand(blue);
+	return 0;
 }
