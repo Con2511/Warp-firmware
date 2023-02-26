@@ -184,6 +184,7 @@ devSSD1331init(void)
 
 int
 stand(void){
+	devSSD1331init();
 	//clear the screen
 	writeCommand(kSSD1331CommandCLEAR);
 	writeCommand(0x00);
