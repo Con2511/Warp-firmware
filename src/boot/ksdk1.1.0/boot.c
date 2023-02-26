@@ -2021,6 +2021,7 @@ main(void)
 		}
 	#endif
 	//devSSD1331init();
+	stand();
 	while (1)
 	{
 		 //devSSD1331init();
