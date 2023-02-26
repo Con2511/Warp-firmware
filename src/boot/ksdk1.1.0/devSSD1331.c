@@ -207,8 +207,8 @@ drawPixel(uint8_t x, uint8_t y, uint8_t green, uint8_t red, uint8_t blue){
 	writeCommand(kSSD1331CommandDRAWLINE);
 	writeCommand(x);
 	writeCommand(y);
-	writeCommand(x);
-	writeCommand(y);
+	writeCommand(x+1);
+	writeCommand(y+1);
 	writeCommand(red);
 	writeCommand(green);
 	writeCommand(blue);
