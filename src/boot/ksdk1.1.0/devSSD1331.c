@@ -181,3 +181,15 @@ devSSD1331init(void)
 
 	return 0;
 }
+
+int
+stand(void){
+	//clear the screen
+	writeCommand(kSSD1331CommandCLEAR);
+	writeCommand(0x00);
+	writeCommand(0x00);
+	writeCommand(0x5F);
+	writeCommand(0x3F);
+	//Commands for person standing or the word walk
+	
+}
