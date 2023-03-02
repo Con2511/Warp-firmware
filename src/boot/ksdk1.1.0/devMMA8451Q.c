@@ -206,7 +206,7 @@ readSensorRegisterMMA8451Q(uint8_t deviceRegister, int numberOfBytes)
 }
 
 uint16_t
-printSensorDataMMA8451Q(bool hexModeFlag, int store[])
+printSensorDataMMA8451Q(bool hexModeFlag, int16_t store[])
 {
 	uint16_t	readSensorRegisterValueLSB;
 	uint16_t	readSensorRegisterValueMSB;

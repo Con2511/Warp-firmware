@@ -1629,7 +1629,7 @@ main(void)
 		int16_t   combined_y;
 		int16_t   combined_z;
 		const int cycles = 100;
-		int quick_store[100];
+		int16_t quick_store[100];
 		warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 		for (size_t i=0; i<cycles; i++)
 		{
