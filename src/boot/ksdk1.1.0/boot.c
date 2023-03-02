@@ -1627,11 +1627,14 @@ main(void)
 		uint16_t  MSBx;
 		uint16_t  LSBx;
 		int16_t   combined_x;
+		const int cycles = 100;
+		int x_store[cycles];
 		warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
-		for (size_t i=0; i<100; i++)
+		for (size_t i=0; i<cycles; i++)
 		{
-			printSensorDataMMA8451Q(0);
+			x_store[i]=printSensorDataMMA8451Q(0);
 			warpPrint(" %d,\n", i);
+			
 			OSA_TimeDelay(100);
 		// if (readSensorRegisterMMA8451Q(0x01,2)==kWarpStatusOK){	
 		// 	MSBx =deviceMMA8451QState.i2cBuffer[0];
@@ -1641,6 +1644,9 @@ main(void)
 		// }
 		// warpPrint("%d,\n", combined_x);
 		// OSA_TimeDelay(100);	
+		}
+		for (size_t i=0; i<cycles;i++){
+			warpPrint(x_store[i]);
 		}	
 		//}
 	#endif
