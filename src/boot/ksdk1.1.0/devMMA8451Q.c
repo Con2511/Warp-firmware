@@ -206,14 +206,16 @@ readSensorRegisterMMA8451Q(uint8_t deviceRegister, int numberOfBytes)
 }
 
 uint16_t
-printSensorDataMMA8451Q(bool hexModeFlag)
+printSensorDataMMA8451Q(bool hexModeFlag, uint16_t store[])
 {
 	uint16_t	readSensorRegisterValueLSB;
 	uint16_t	readSensorRegisterValueMSB;
 	int16_t		readSensorRegisterValueCombined;
 	//int16_t		x_accel;
 	WarpStatus	i2cReadStatus;
-	int16_t value_release;
+	//int16_t value_release_x;
+	//int16_t value_release_y;
+	//int16_t value_release_z;
 
 	warpScaleSupplyVoltage(deviceMMA8451QState.operatingVoltageMillivolts);
 
@@ -238,7 +240,7 @@ printSensorDataMMA8451Q(bool hexModeFlag)
 	 *	Sign extend the 14-bit value based on knowledge that upper 2 bit are 0:
 	 */
 	readSensorRegisterValueCombined = (readSensorRegisterValueCombined ^ (1 << 13)) - (1 << 13);
-	value_release=readSensorRegisterValueCombined;
+	store[0]=readSensorRegisterValueCombined;
 	if (i2cReadStatus != kWarpStatusOK)
 	{
 		warpPrint(" ----,");
@@ -264,7 +266,7 @@ printSensorDataMMA8451Q(bool hexModeFlag)
 	 *	Sign extend the 14-bit value based on knowledge that upper 2 bit are 0:
 	 */
 	readSensorRegisterValueCombined = (readSensorRegisterValueCombined ^ (1 << 13)) - (1 << 13);
-	//value_release[1]=readSensorRegisterValueCombined;
+	store[1]=readSensorRegisterValueCombined;
 	if (i2cReadStatus != kWarpStatusOK)
 	{
 		warpPrint(" ----,");
@@ -290,7 +292,7 @@ printSensorDataMMA8451Q(bool hexModeFlag)
 	 *	Sign extend the 14-bit value based on knowledge that upper 2 bit are 0:
 	 */
 	readSensorRegisterValueCombined = (readSensorRegisterValueCombined ^ (1 << 13)) - (1 << 13);
-	//value_release[2]=readSensorRegisterValueCombined;
+	store[2]=readSensorRegisterValueCombined;
 	if (i2cReadStatus != kWarpStatusOK)
 	{
 		warpPrint(" ----,");
@@ -306,5 +308,5 @@ printSensorDataMMA8451Q(bool hexModeFlag)
 			warpPrint(" %d,", readSensorRegisterValueCombined);
 		}
 	}
-	return value_release;
+	return store;
 }
