@@ -3283,7 +3283,7 @@ printAllSensors(bool printHeadersAndCalibration, bool hexModeFlag, int menuDelay
 		#endif
 
 		#if (WARP_BUILD_ENABLE_DEVMMA8451Q)
-			printSensorDataMMA8451Q(hexModeFlag);
+			//printSensorDataMMA8451Q(hexModeFlag, uint16_t array[]);
 		#endif
 
 		#if (WARP_BUILD_ENABLE_DEVMAG3110)
