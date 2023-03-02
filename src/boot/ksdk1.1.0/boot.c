@@ -1624,20 +1624,22 @@ main(void)
 	#if (WARP_BUILD_ENABLE_DEVMMA8451Q)
 		initMMA8451Q(	0x1D	/* i2cAddress */,	kWarpDefaultSupplyVoltageMillivoltsMMA8451Q	);
 		//while(1){
-		uint8_t  MSBx;
-		uint8_t  LSBx;
+		uint16_t  MSBx;
+		uint16_t  LSBx;
 		int16_t   combined_x;
-		warpPrint("x-acceleration");	
+		warpPrint("x-acceleration\n");	
 		for (size_t i=0; i<100; i++)
 		{
-		if (readSensorRegisterMMA8451Q(0x01,2)==kWarpStatusOK){	
-			MSBx =deviceMMA8451QState.i2cBuffer[0];
-			LSBx =deviceMMA8451QState.i2cBuffer[1];
-			combined_x =((MSBx & 0xFF)<<6)|(LSBx>>2);
-			combined_x=(combined_x^(1<<13))-(1<<13);
-		}
-		warpPrint("%d,\n", combined_x);
-		OSA_TimeDelay(100);	
+			printSensorDataMMA8451Q(0);
+			OSA_TimeDelay(100);
+		// if (readSensorRegisterMMA8451Q(0x01,2)==kWarpStatusOK){	
+		// 	MSBx =deviceMMA8451QState.i2cBuffer[0];
+		// 	LSBx =deviceMMA8451QState.i2cBuffer[1];
+		// 	combined_x =((MSBx & 0xFF)<<6)|(LSBx>>2);
+		// 	combined_x=(combined_x^(1<<13))-(1<<13);
+		// }
+		// warpPrint("%d,\n", combined_x);
+		// OSA_TimeDelay(100);	
 		}	
 		//}
 	#endif
