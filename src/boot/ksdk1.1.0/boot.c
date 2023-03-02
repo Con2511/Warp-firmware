@@ -1637,7 +1637,7 @@ main(void)
 			printSensorDataMMA8451Q(0, quick_store);
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
-			warpPrint(" %d,\n", combined_x);
+			warpPrint(" %d,\n", quick_store[0]);
 			
 			OSA_TimeDelay(100);
 		// if (readSensorRegisterMMA8451Q(0x01,2)==kWarpStatusOK){	
