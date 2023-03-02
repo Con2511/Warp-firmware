@@ -1632,7 +1632,8 @@ main(void)
 		warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 		for (size_t i=0; i<cycles; i++)
 		{
-			x_store[i]=printSensorDataMMA8451Q(0);
+			//x_store[i]=printSensorDataMMA8451Q(0);
+			warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
 			
 			OSA_TimeDelay(100);
@@ -1645,9 +1646,9 @@ main(void)
 		// warpPrint("%d,\n", combined_x);
 		// OSA_TimeDelay(100);	
 		}
-		for (size_t i=0; i<cycles;i++){
-			warpPrint(x_store[i]);
-		}	
+		// for (size_t i=0; i<cycles;i++){
+		// 	warpPrint(x_store[i]);
+		// }	
 		//}
 	#endif
 
