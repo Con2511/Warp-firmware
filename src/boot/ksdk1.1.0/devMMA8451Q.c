@@ -206,14 +206,14 @@ readSensorRegisterMMA8451Q(uint8_t deviceRegister, int numberOfBytes)
 }
 
 uint16_t
-printSensorDataMMA8451Q(bool hexModeFlag, int16_t store[])
+printSensorDataMMA8451Q(bool hexModeFlag)
 {
 	uint16_t	readSensorRegisterValueLSB;
 	uint16_t	readSensorRegisterValueMSB;
 	int16_t		readSensorRegisterValueCombined;
 	//int16_t		x_accel;
 	WarpStatus	i2cReadStatus;
-	//int16_t value_release_x;
+	int16_t value_release_x;
 	//int16_t value_release_y;
 	//int16_t value_release_z;
 
@@ -240,7 +240,7 @@ printSensorDataMMA8451Q(bool hexModeFlag, int16_t store[])
 	 *	Sign extend the 14-bit value based on knowledge that upper 2 bit are 0:
 	 */
 	readSensorRegisterValueCombined = (readSensorRegisterValueCombined ^ (1 << 13)) - (1 << 13);
-	store[0]=(int) readSensorRegisterValueCombined;
+	value_release_x=(int) readSensorRegisterValueCombined;
 	if (i2cReadStatus != kWarpStatusOK)
 	{
 		warpPrint(" ----,");
@@ -308,7 +308,7 @@ printSensorDataMMA8451Q(bool hexModeFlag, int16_t store[])
 			warpPrint(" %d,", readSensorRegisterValueCombined);
 		}
 	}
-	return 0;
+	return value_release_x;
 }
 uint16_t
 printSensorDataMMA8451Q_x(bool hexModeFlag)

@@ -1638,8 +1638,13 @@ main(void)
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
 			warpPrint(" %d,\n", combined_x);
+			OSA_TimeDelay(50);
+			combined_x=(int16_t)printSensorDataMMA8451Q(0);
+			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
+			warpPrint(" %d,\n", i);
+			warpPrint(" %d,\n", combined_x);
 			
-			OSA_TimeDelay(100);
+			OSA_TimeDelay(50);
 		// if (readSensorRegisterMMA8451Q(0x01,2)==kWarpStatusOK){	
 		// 	MSBx =deviceMMA8451QState.i2cBuffer[0];
 		// 	LSBx =deviceMMA8451QState.i2cBuffer[1];
