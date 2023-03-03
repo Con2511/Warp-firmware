@@ -1624,7 +1624,7 @@ main(void)
 	#if (WARP_BUILD_ENABLE_DEVMMA8451Q)
 		initMMA8451Q(	0x1D	/* i2cAddress */,	kWarpDefaultSupplyVoltageMillivoltsMMA8451Q	);
 		//while(1){
-		warpPrint("initialisation complete");
+		warpPrint("initialisation complete \n");
 		int16_t   combined_x;
 		int16_t   combined_y;
 		int16_t   combined_z;
@@ -1634,10 +1634,10 @@ main(void)
 		for (size_t i=0; i<cycles; i++)
 		{
 			//x_store[i]=printSensorDataMMA8451Q(0);
-			printSensorDataMMA8451Q(0, quick_store);
+			combined_x=(int16_t)printSensorDataMMA8451Q_x(0);
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
-			warpPrint(" %d,\n", quick_store[0]);
+			warpPrint(" %d,\n", combined_x);
 			
 			OSA_TimeDelay(100);
 		// if (readSensorRegisterMMA8451Q(0x01,2)==kWarpStatusOK){	
