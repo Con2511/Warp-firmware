@@ -213,7 +213,7 @@ printSensorDataMMA8451Q(bool hexModeFlag)
 	int16_t		readSensorRegisterValueCombined;
 	//int16_t		x_accel;
 	WarpStatus	i2cReadStatus;
-	int16_t value_release_x;
+	//int16_t value_release_x;
 	//int16_t value_release_y;
 	//int16_t value_release_z;
 
