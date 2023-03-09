@@ -1640,6 +1640,7 @@ main(void)
 			warpPrint(" %d,\n", combined_x);
 
 			OSA_TimeDelay(100);
+		}
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVINA219)
