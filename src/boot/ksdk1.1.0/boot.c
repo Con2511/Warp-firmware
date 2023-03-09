@@ -1632,12 +1632,12 @@ main(void)
 		for (size_t i=0; i<cycles; i++)
 		{
 			//x_store[i]=printSensorDataMMA8451Q(0);
-			//printSensorDataMMA8451Q(0);
+			printSensorDataMMA8451Q(0);
 			//warpPrint(" %d,", );
-			combined_x= (int16_t) printSensorDataMMA8451Q(0);
+			//combined_x= (int16_t) printSensorDataMMA8451Q(0);
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
-			warpPrint(" %d,\n", combined_x);
+			//warpPrint(" %d,\n", combined_x);
 
 			OSA_TimeDelay(100);
 		}
