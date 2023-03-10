@@ -168,7 +168,7 @@ readSensorRegisterMMA8451Q(uint8_t deviceRegister, int numberOfBytes)
 	return kWarpStatusOK;
 }
 
-void
+int16_t
 printSensorDataMMA8451Q(bool hexModeFlag)
 {
 	uint16_t	readSensorRegisterValueLSB;
@@ -216,6 +216,7 @@ printSensorDataMMA8451Q(bool hexModeFlag)
 			warpPrint(" %d,", readSensorRegisterValueCombined);
 		}
 	}
+	return readSensorRegisterValueCombined;
 
 	// i2cReadStatus = readSensorRegisterMMA8451Q(kWarpSensorOutputRegisterMMA8451QOUT_Y_MSB, 2 /* numberOfBytes */);
 	// readSensorRegisterValueMSB = deviceMMA8451QState.i2cBuffer[0];
