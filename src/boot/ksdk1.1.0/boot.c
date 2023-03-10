@@ -1638,10 +1638,12 @@ main(void)
 			//warpPrint(" %d,", );
 			combined_x= (int16_t) printSensorDataMMA8451Q_x(0);
 			combined_y= (int16_t) printSensorDataMMA8451Q_y(0);
+			combined_z= (int16_t) printSensorDataMMA8451Q_z(0);
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
 			warpPrint(" %d,\n", combined_x);
 			warpPrint(" %d,\n", combined_y);
+			warpPrint(" %d,\n", combined_z);
 
 			OSA_TimeDelay(100);
 		}
