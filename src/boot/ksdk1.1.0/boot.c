@@ -1626,15 +1626,16 @@ main(void)
 		uint16_t  MSBx;
 		uint16_t  LSBx;
 		int16_t   combined_x;
+		int16_t	  combined_y;
 		const int cycles = 100;
 		//int x_store[cycles];
 		warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 		for (size_t i=0; i<cycles; i++)
 		{
 			//x_store[i]=printSensorDataMMA8451Q(0);
-			printSensorDataMMA8451Q(0);
+			//printSensorDataMMA8451Q(0);
 			//warpPrint(" %d,", );
-			combined_x= (int16_t) printSensorDataMMA8451Q(0);
+			combined_x= (int16_t) printSensorDataMMA8451Q_x(0);
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
 			warpPrint(" %d,\n", combined_x);
