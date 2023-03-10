@@ -1629,7 +1629,9 @@ main(void)
 		int16_t	  combined_y;
 		int16_t   combined_z;
 		const int cycles = 10;
-		int x_store[10];
+		int16_t x_store[cycles];
+		int16_t y_store[cycles];
+		int16_t z_store[cycles];
 		warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 		for (size_t i=0; i<cycles; i++)
 		{
@@ -1639,7 +1641,9 @@ main(void)
 			combined_x= (int16_t) printSensorDataMMA8451Q_x(0);
 			x_store[i]=combined_x;
 			combined_y= (int16_t) printSensorDataMMA8451Q_y(0);
+			y_store[i]=combined_y;
 			combined_z= (int16_t) printSensorDataMMA8451Q_z(0);
+			z_store[i]=combined_z;
 			//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 			warpPrint(" %d,\n", i);
 			warpPrint(" %d,\n", combined_x);
@@ -1650,7 +1654,9 @@ main(void)
 		}
 		for(size_t i=0; i<cycles;i++)
 		{
-			warpPrint(" %d,\n", x_store[i]);	
+			warpPrint(" %d,", x_store[i]);	
+			warpPrint(" %d,", y_store[i]);
+			warpPrint(" %d,\n", z_store[i]);		
 		}
 	#endif
 
