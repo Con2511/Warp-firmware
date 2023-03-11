@@ -205,17 +205,17 @@ printSensorDataMMA8451Q_x(bool hexModeFlag)
 	{
 		warpPrint(" ----,");
 	}
-	else
-	{
-		if (hexModeFlag)
-		{
-			warpPrint(" 0x%02x 0x%02x,", readSensorRegisterValueMSB, readSensorRegisterValueLSB);
-		}
-		else
-		{
-			warpPrint(" %d,", readSensorRegisterValueCombined);
-		}
-	}
+	// else
+	// {
+	// 	// if (hexModeFlag)
+	// 	// {
+	// 	// 	warpPrint(" 0x%02x 0x%02x,", readSensorRegisterValueMSB, readSensorRegisterValueLSB);
+	// 	// }
+	// 	// else
+	// 	// {
+	// 	// 	warpPrint(" %d,", readSensorRegisterValueCombined);
+	// 	// }
+	// }
 	return readSensorRegisterValueCombined;
 
 	// i2cReadStatus = readSensorRegisterMMA8451Q(kWarpSensorOutputRegisterMMA8451QOUT_Y_MSB, 2 /* numberOfBytes */);
@@ -307,17 +307,17 @@ printSensorDataMMA8451Q_y(bool hexModeFlag)
 	{
 		warpPrint(" ----,");
 	}
-	else
-	{
-		if (hexModeFlag)
-		{
-			warpPrint(" 0x%02x 0x%02x,", readSensorRegisterValueMSB, readSensorRegisterValueLSB);
-		}
-		else
-		{
-			warpPrint(" %d,", readSensorRegisterValueCombined);
-		}
-	}
+	// else
+	// {
+	// 	if (hexModeFlag)
+	// 	{
+	// 		warpPrint(" 0x%02x 0x%02x,", readSensorRegisterValueMSB, readSensorRegisterValueLSB);
+	// 	}
+	// 	else
+	// 	{
+	// 		warpPrint(" %d,", readSensorRegisterValueCombined);
+	// 	}
+	// }
 	return readSensorRegisterValueCombined;
 }
 
@@ -358,16 +358,16 @@ printSensorDataMMA8451Q_z(bool hexModeFlag)
 	{
 		warpPrint(" ----,");
 	}
-	else
-	{
-		if (hexModeFlag)
-		{
-			warpPrint(" 0x%02x 0x%02x,", readSensorRegisterValueMSB, readSensorRegisterValueLSB);
-		}
-		else
-		{
-			warpPrint(" %d,", readSensorRegisterValueCombined);
-		}
-	}
+	// else
+	// {
+	// 	if (hexModeFlag)
+	// 	{
+	// 		warpPrint(" 0x%02x 0x%02x,", readSensorRegisterValueMSB, readSensorRegisterValueLSB);
+	// 	}
+	// 	else
+	// 	{
+	// 		warpPrint(" %d,", readSensorRegisterValueCombined);
+	// 	}
+	// }
 	return readSensorRegisterValueCombined;
 }
