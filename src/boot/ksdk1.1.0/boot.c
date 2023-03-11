@@ -1671,9 +1671,11 @@ main(void)
 			sum_z=sum_z+z_store[i];					
 		}
 		mean_x=(int)floor(sum_x/cycles);
-		mean_y=sum_y/cycles;
-		mean_z=sum_z/cycles;
+		mean_y=(int)floor(sum_y/cycles);
+		mean_z=(int)floor(sum_z/cycles);
 		warpPrint("Mean x: %d,\n", mean_x);
+		warpPrint("Mean y: %d,\n", mean_y);
+		warpPrint("Mean z: %d,\n", mean_z);
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVINA219)
