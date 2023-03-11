@@ -1623,12 +1623,15 @@ main(void)
 
 	#if (WARP_BUILD_ENABLE_DEVMMA8451Q)
 		initMMA8451Q(	0x1D	/* i2cAddress */,	kWarpDefaultSupplyVoltageMillivoltsMMA8451Q	);
-		float mean_x;
-		float mean_y;
-		float mean_z;
+		double sum_x=0;
+		double  sum_y=0;
+		double sum_z=0;
 		int16_t   combined_x;
 		int16_t	  combined_y;
 		int16_t   combined_z;
+		int16_t   mean_x;
+		int16_t	  mean_y;
+		int16_t   mean_z;
 		const int cycles = 10;
 		int16_t x_store[cycles];
 		int16_t y_store[cycles];
@@ -1658,19 +1661,19 @@ main(void)
 			warpPrint(" %d,", y_store[i]);
 			warpPrint(" %d,\n", z_store[i]);		
 		}
-		combined_x=0;
-		combined_y=0;
-		combined_z=0;
+		sum_x=0;
+		sum_y=0;
+		sum_z=0;
 		for(size_t i=0; i<cycles;i++)
 		{
-			combined_x=combined_x+x_store[i];
-			combined_y=combined_y+y_store[i];
-			combined_z=combined_z+z_store[i];					
+			sum_x=sum_x+x_store[i];
+			sum_y=sum_y+y_store[i];
+			sum_z=sum_z+z_store[i];					
 		}
-		mean_x=combined_x/cycles;
-		mean_y=combined_y/cycles;
-		mean_z=combined_z/cycles;
-		warpPrint("Mean x %d,",(int) floor(mean_x));
+		mean_x=floor(sum_x/cycles);
+		mean_y=sum_y/cycles;
+		mean_z=sum_z/cycles;
+		warpPrint("Mean x: %d,\n", mean_x);
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVINA219)
