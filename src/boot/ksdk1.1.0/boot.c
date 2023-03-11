@@ -1689,7 +1689,12 @@ main(void)
 			warpPrint("Std x: %d,\n",sd_x);
 			warpPrint("Std y: %d,\n",sd_y);
 			warpPrint("Std z: %d,\n",sd_z);
-			
+			if (sd_x<=700){
+				stand();
+			}
+			else{
+				walk();
+			}
 		}
 	#endif
 
