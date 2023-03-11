@@ -1632,6 +1632,9 @@ main(void)
 		int16_t   mean_x;
 		int16_t	  mean_y;
 		int16_t   mean_z;
+		int16_t   sd_x;
+		int16_t	  sd_y;
+		int16_t   sd_z;
 		const int cycles = 10;
 		int16_t x_store[cycles];
 		int16_t y_store[cycles];
@@ -1676,6 +1679,15 @@ main(void)
 		warpPrint("Mean x: %d,\n", mean_x);
 		warpPrint("Mean y: %d,\n", mean_y);
 		warpPrint("Mean z: %d,\n", mean_z);
+		sum_x=0;
+		sum_y=0;
+		sum_z=0;
+		for(size_t i=0; i<cycles;i++)
+		{
+			sum_x=sum_x+x_store[i]*x_store[i];
+		}
+		sd_x=(int)floor(sqrt((sum_x/(cycles-1))-mean_x*mean_x));
+		warpPrint("Std x: %d,\n",sd_x);
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVINA219)
