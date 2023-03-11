@@ -1680,9 +1680,16 @@ main(void)
 			for(size_t i=0; i<cycles;i++)
 			{
 				sum_x+=pow(x_store[i]-mean_x,2);
+				sum_y+=pow(y_store[i]-mean_y,2);
+				sum_z+=pow(z_store[i]-mean_z,2);
 			}
 			sd_x=(int)floor(sqrt(sum_x/(cycles-1)));
+			sd_y=(int)floor(sqrt(sum_y/(cycles-1)));
+			sd_z=(int)floor(sqrt(sum_z/(cycles-1)));
 			warpPrint("Std x: %d,\n",sd_x);
+			warpPrint("Std y: %d,\n",sd_y);
+			warpPrint("Std z: %d,\n",sd_z);
+			
 		}
 	#endif
 

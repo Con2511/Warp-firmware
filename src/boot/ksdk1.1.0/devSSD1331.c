@@ -161,20 +161,20 @@ devSSD1331init(void)
 	 *	Any post-initialization drawing commands go here.
 	 */
 	//...
-	writeCommand(kSSD1331CommandDRAWRECT);
-	writeCommand(0x00);
-	writeCommand(0x00);
+	// writeCommand(kSSD1331CommandDRAWRECT);
+	// writeCommand(0x00);
+	// writeCommand(0x00);
 
-	writeCommand(0x5F);
-	writeCommand(0x3F);
+	// writeCommand(0x5F);
+	// writeCommand(0x3F);
 
-	writeCommand(0x00);
-	writeCommand(0xFF);
-	writeCommand(0x00);
+	// writeCommand(0x00);
+	// writeCommand(0xFF);
+	// writeCommand(0x00);
 
-	writeCommand(0x00);
-	writeCommand(0xFF);
-	writeCommand(0x00);
+	// writeCommand(0x00);
+	// writeCommand(0xFF);
+	// writeCommand(0x00);
 	//writeCommand(kSSD1331CommandFILL);
         //writeCommand(0x01);
 
@@ -185,12 +185,12 @@ devSSD1331init(void)
 int
 stand(void){
 	devSSD1331init();
-	//clear the screen
-	writeCommand(kSSD1331CommandCLEAR);
-	writeCommand(0x00);
-	writeCommand(0x00);
-	writeCommand(0x5F);
-	writeCommand(0x3F);
+	// //clear the screen
+	// writeCommand(kSSD1331CommandCLEAR);
+	// writeCommand(0x00);
+	// writeCommand(0x00);
+	// writeCommand(0x5F);
+	// writeCommand(0x3F);
 	//Commands for person standing or the word walk
 	//for(size_t i=0; i<50;i++){
 	// 
@@ -222,24 +222,15 @@ stand(void){
 int
 walk(void){
 	devSSD1331init();
-	//clear the screen
-	writeCommand(kSSD1331CommandCLEAR);
-	writeCommand(0x00);
-	writeCommand(0x00);
-	writeCommand(0x5F);
-	writeCommand(0x3F);
+	// //clear the screen
+	// writeCommand(kSSD1331CommandCLEAR);
+	// writeCommand(0x00);
+	// writeCommand(0x00);
+	// writeCommand(0x5F);
+	// writeCommand(0x3F);
 	//Commands for person walking
 	//for(size_t i=0; i<50;i++){
 	// 
-	writeCommand(kSSD1331CommandDRAWLINE);
-	writeCommand(0x20);
-	writeCommand(0x20);
-	writeCommand(0x40);
-	writeCommand(0x40);
-	writeCommand(0x00);
-	writeCommand(0xFF);
-	writeCommand(0x00);
-	//}
 	writeCommand(kSSD1331CommandDRAWRECT);
 	writeCommand(0x00);
 	writeCommand(0x00);
@@ -257,6 +248,24 @@ walk(void){
 	return 0;
 }
 
+int
+run(void){
+	writeCommand(kSSD1331CommandDRAWRECT);
+	writeCommand(0x00);
+	writeCommand(0x00);
+
+	writeCommand(0x5F);
+	writeCommand(0x3F);
+	
+	writeCommand(0x00);
+	writeCommand(0xFF);
+	writeCommand(0x00);
+	
+	writeCommand(0x00);
+	writeCommand(0xFF);
+	writeCommand(0x00);
+	return 0;
+}
 int
 drawPixel(uint8_t x, uint8_t y, uint8_t green, uint8_t red, uint8_t blue){
 	writeCommand(kSSD1331CommandDRAWLINE);
