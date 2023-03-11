@@ -1670,7 +1670,7 @@ main(void)
 		mean_x=combined_x/cycles;
 		mean_y=combined_y/cycles;
 		mean_z=combined_z/cycles;
-		warpPrint("Mean x %d,", floor(mean_x));
+		warpPrint("Mean x %d,",(int) floor(mean_x));
 	#endif
 
 	#if (WARP_BUILD_ENABLE_DEVINA219)
