@@ -1670,7 +1670,7 @@ main(void)
 			sum_y=sum_y+y_store[i];
 			sum_z=sum_z+z_store[i];					
 		}
-		mean_x=floor(sum_x/cycles);
+		mean_x=(int)floor(sum_x/cycles);
 		mean_y=sum_y/cycles;
 		mean_z=sum_z/cycles;
 		warpPrint("Mean x: %d,\n", mean_x);
@@ -1731,125 +1731,7 @@ main(void)
 	#if (WARP_BUILD_ENABLE_GLAUX_VARIANT && WARP_BUILD_BOOT_TO_CSVSTREAM)
 		printBootSplash(gWarpCurrentSupplyVoltage, menuRegisterAddress, &powerManagerCallbackStructure);
 
-		#if (WARP_BUILD_ENABLE_DEVIS25xP)
-			warpPrint("About to read IS25xP JEDEC ID...\n");
-			//spiTransactionIS25xP({0x9F /* op0 */,  0x00 /* op1 */,  0x00 /* op2 */, 0x00 /* op3 */, 0x00 /* op4 */, 0x00 /* op5 */, 0x00 /* op6 */}, 5 /* opCount */);
-			warpPrint("IS25xP JEDEC ID = [0x%X] [0x%X] [0x%X]\n", deviceIS25xPState.spiSinkBuffer[1], deviceIS25xPState.spiSinkBuffer[2], deviceIS25xPState.spiSinkBuffer[3]);
-
-			warpPrint("About to read IS25xP Manufacturer ID...\n");
-			//spiTransactionIS25xP({0x90 /* op0 */,  0x00 /* op1 */,  0x00 /* op2 */, 0x00 /* op3 */, 0x00 /* op4 */, 0x00 /* op5 */, 0x00 /* op6 */}, 5 /* opCount */);
-			warpPrint("IS25xP Manufacturer ID = [0x%X] [0x%X] [0x%X]\n", deviceIS25xPState.spiSinkBuffer[3], deviceIS25xPState.spiSinkBuffer[4], deviceIS25xPState.spiSinkBuffer[5]);
-
-			warpPrint("About to read IS25xP Flash ID (also releases low-power mode)...\n");
-			//spiTransactionIS25xP({0xAB /* op0 */,  0x00 /* op1 */,  0x00 /* op2 */, 0x00 /* op3 */, 0x00 /* op4 */, 0x00 /* op5 */, 0x00 /* op6 */}, 5 /* opCount */);
-			warpPrint("IS25xP Flash ID = [0x%X]\n", deviceIS25xPState.spiSinkBuffer[4]);
-		#endif
-
-		warpPrint("About to activate low-power modes (including IS25xP Flash)...\n");
-		activateAllLowPowerSensorModes(true /* verbose */);
-
-		uint8_t	tmpRV8803RegisterByte;
-		status = readRTCRegisterRV8803C7(kWarpRV8803RegSec, &tmpRV8803RegisterByte);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("readRTCRegisterRV8803C7(kWarpRV8803RegSec, &tmpRV8803RegisterByte) failed\n");
-		}
-		else
-		{
-			warpPrint("kWarpRV8803RegSec = [0x%X]\n", tmpRV8803RegisterByte);
-		}
-
-		status = readRTCRegisterRV8803C7(kWarpRV8803RegMin, &tmpRV8803RegisterByte);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("readRTCRegisterRV8803C7(kWarpRV8803RegMin, &tmpRV8803RegisterByte) failed\n");
-		}
-		else
-		{
-			warpPrint("kWarpRV8803RegMin = [0x%X]\n", tmpRV8803RegisterByte);
-		}
-
-		status = readRTCRegisterRV8803C7(kWarpRV8803RegHour, &tmpRV8803RegisterByte);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("readRTCRegisterRV8803C7(kWarpRV8803RegHour, &tmpRV8803RegisterByte) failed\n");
-		}
-		else
-		{
-			warpPrint("kWarpRV8803RegHour = [0x%X]\n", tmpRV8803RegisterByte);
-		}
-
-		status = readRTCRegisterRV8803C7(kWarpRV8803RegExt, &tmpRV8803RegisterByte);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("readRTCRegisterRV8803C7(kWarpRV8803RegExt, &tmpRV8803RegisterByte) failed\n");
-		}
-		else
-		{
-			warpPrint("kWarpRV8803RegExt = [0x%X]\n", tmpRV8803RegisterByte);
-		}
-
-		status = readRTCRegisterRV8803C7(kWarpRV8803RegFlag, &tmpRV8803RegisterByte);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("readRTCRegisterRV8803C7(kWarpRV8803RegFlag, &tmpRV8803RegisterByte) failed\n");
-		}
-		else
-		{
-			warpPrint("kWarpRV8803RegFlag = [0x%X]\n", tmpRV8803RegisterByte);
-		}
-
-		status = readRTCRegisterRV8803C7(kWarpRV8803RegCtrl, &tmpRV8803RegisterByte);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("readRTCRegisterRV8803C7(kWarpRV8803RegCtrl, &tmpRV8803RegisterByte) failed\n");
-		}
-		else
-		{
-			warpPrint("kWarpRV8803RegCtrl = [0x%X]\n", tmpRV8803RegisterByte);
-		}
-
-		warpPrint("About to configureSensorBME680() for measurement...\n");
-		status = configureSensorBME680(	0b00000001,	/*	payloadCtrl_Hum: Humidity oversampling (OSRS) to 1x				*/
-						0b00100100,	/*	payloadCtrl_Meas: Temperature oversample 1x, pressure overdsample 1x, mode 00	*/
-						0b00001000	/*	payloadGas_0: Turn off heater							*/
-						);
-		if (status != kWarpStatusOK)
-		{
-			warpPrint("configureSensorBME680() failed...\n");
-		}
-
-		warpDisableI2Cpins();
-
-		warpPrint("About to loop with printSensorDataBME680()...\n");
-		while (1)
-		{
-			blinkLED(kGlauxPinLED);
-			for (int i = 0; i < kGlauxSensorRepetitionsPerSleepIteration; i++)
-			{
-				printAllSensors(true /* printHeadersAndCalibration */, true /* hexModeFlag */, 0 /* menuDelayBetweenEachRun */, true /* loopForever */);
-			}
-
-			warpPrint("About to configureSensorBME680() for sleep...\n");
-			status = configureSensorBME680(	0b00000000,	/*	payloadCtrl_Hum: Sleep							*/
-							0b00000000,	/*	payloadCtrl_Meas: No temperature samples, no pressure samples, sleep	*/
-							0b00001000	/*	payloadGas_0: Turn off heater						*/
-						);
-			if (status != kWarpStatusOK)
-			{
-				warpPrint("configureSensorBME680() failed...\n");
-			}
-			warpDisableI2Cpins();
-			blinkLED(kGlauxPinLED);
-
-			warpPrint("About to go into VLLS0 for 30 (was 60*60) seconds (will reset afterwords)...\n");
-			status = warpSetLowPowerMode(kWarpPowerModeVLLS0, kGlauxSleepSecondsBetweenSensorRepetitions /* sleep seconds */);
-
-			if (status != kWarpStatusOK)
-			{
-				warpPrint("warpSetLowPowerMode(kWarpPowerModeVLLS0, 10)() failed...\n");
-			}
-			warpPrint("Should not get here...");
+		
 		}
 	#endif
 	//devSSD1331init();
