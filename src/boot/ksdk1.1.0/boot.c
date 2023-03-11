@@ -1630,7 +1630,7 @@ main(void)
 			int16_t   sd_x;
 			int16_t	  sd_y;
 			int16_t   sd_z;
-			const int cycles = 10;
+			const int cycles = 50;
 			int16_t x_store[cycles];
 			int16_t y_store[cycles];
 			int16_t z_store[cycles];
@@ -1651,7 +1651,7 @@ main(void)
 				warpPrint(" %d,\n", combined_x);
 				warpPrint(" %d,\n", combined_y);
 				warpPrint(" %d,\n", combined_z);
-				OSA_TimeDelay(1000);
+				OSA_TimeDelay(200);
 			}
 			// for(size_t i=0; i<cycles;i++)
 			// {
