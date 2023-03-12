@@ -1640,10 +1640,11 @@ main(void)
 			int16_t y_store[cycles];
 			int16_t z_store[cycles];
 
-			int16_t x_threshold_walk= 1000;
-
+			uint16_t x_threshold_walk= 1000;
+			uint16_t x_threshold_run=2300;
 			int8_t percentage_walk;
 			int8_t percentage_stand;
+			int8_t percentage_run;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
 			{
@@ -1718,7 +1719,18 @@ main(void)
 				
 			}
 			else{
-				warpPrint("Too high for standing region");	
+				sum_x=sd_x-x_threshold_run;
+				percentage_walk=(int)floor((sum_x/x_threshold_run)*100);
+				percentage_run=100-percentage_walk;
+				warpPrint("Percentage its walking: %d,\n", percentage_walk);
+				warpPrint("Percentage its running: %d,\n", percentage_run);
+				if (percentage_run>percentage_walk)
+				{
+					run();
+				}
+				else{
+					walk();
+				}
 			}
 			// if (sd_x<=700){
 			// 	stand();
