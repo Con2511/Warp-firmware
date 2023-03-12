@@ -1705,7 +1705,7 @@ main(void)
 			if (sd_x<=x_threshold_walk){
 				sum_x=x_threshold_walk-sd_x;
 				percentage_stand=(int)floor((sum_x/x_threshold_walk)*100);
-				percentage_walk=100-percentage_walk;
+				percentage_walk=100-percentage_stand;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
 				warpPrint("Percentage its standing: %d,\n", percentage_stand);
 				if (percentage_stand>percentage_walk)
