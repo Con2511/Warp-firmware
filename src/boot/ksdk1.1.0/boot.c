@@ -1621,19 +1621,29 @@ main(void)
 			double sum_x=0;
 			double  sum_y=0;
 			double sum_z=0;
+			
 			int16_t   combined_x;
 			int16_t	  combined_y;
 			int16_t   combined_z;
+			
 			int16_t   mean_x;
 			int16_t	  mean_y;
 			int16_t   mean_z;
+			
 			int16_t   sd_x;
 			int16_t	  sd_y;
 			int16_t   sd_z;
+			
 			const int cycles = 50;
+			
 			int16_t x_store[cycles];
 			int16_t y_store[cycles];
 			int16_t z_store[cycles];
+
+			int16_t x_threshold_walk= 1000;
+
+			int8_t percentage_walk;
+			int8_t percentage_stand;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
 			{
@@ -1689,12 +1699,33 @@ main(void)
 			warpPrint("Std x: %d,\n",sd_x);
 			warpPrint("Std y: %d,\n",sd_y);
 			warpPrint("Std z: %d,\n",sd_z);
-			if (sd_x<=700){
-				stand();
+			sum_x=0;
+			sum_y=0;
+			sum_z=0;
+			if (sd_x<=x_threshold_walk){
+				sum_x=x_threshold_walk-sd_x;
+				percentage_walk=(int)floor((sum_x/x_threshold_walk)*100);
+				percentage_stand=100-percentage_walk;
+				warpPrint("Percentage its walking: %d,\n", percentage_walk);
+				warpPrint("Percentage its standing: %d,\n", percentage_stand);
+				if (percentage_stand>percentage_walk)
+				{
+					stand();
+				}
+				else{
+					walk();
+				}
+				
 			}
 			else{
-				walk();
+				warpPrint("Too high for standing region");	
 			}
+			// if (sd_x<=700){
+			// 	stand();
+			// }
+			// else{
+			// 	walk();
+			// }
 		}
 	#endif
 
