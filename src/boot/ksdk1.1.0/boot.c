@@ -1640,8 +1640,8 @@ main(void)
 			int16_t y_store[cycles];
 			int16_t z_store[cycles];
 
-			uint16_t x_threshold_walk= 1000;
-			uint16_t x_threshold_run=2300;
+			uint16_t x_threshold_walk= 1400;
+			uint16_t x_threshold_run=5000;
 			int8_t percentage_walk;
 			int8_t percentage_stand;
 			int8_t percentage_run;
@@ -1703,8 +1703,9 @@ main(void)
 			sum_x=0;
 			sum_y=0;
 			sum_z=0;
-			if (sd_x<=x_threshold_walk){
-				sum_x=x_threshold_walk-sd_x;
+			sum_y=sqrt(pow(sd_x,2)+pow(sd_y,2)+pow(sd_z,2));
+			if (sum_y<=x_threshold_walk){
+				sum_x=x_threshold_walk-sum_y;
 				percentage_stand=(int)floor((sum_x/x_threshold_walk)*100);
 				percentage_walk=100-percentage_stand;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
@@ -1719,7 +1720,7 @@ main(void)
 				
 			}
 			else{
-				sum_x=x_threshold_run-sd_x;
+				sum_x=x_threshold_run-sum_y;
 				percentage_walk=(int)floor((sum_x/x_threshold_run)*100);
 				percentage_run=100-percentage_walk;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
