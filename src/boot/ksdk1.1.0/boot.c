@@ -1719,7 +1719,7 @@ main(void)
 				
 			}
 			else{
-				sum_x=sd_x-x_threshold_run;
+				sum_x=x_threshold_run-sd_x;
 				percentage_walk=(int)floor((sum_x/x_threshold_run)*100);
 				percentage_run=100-percentage_walk;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
