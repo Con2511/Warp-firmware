@@ -1661,7 +1661,7 @@ main(void)
 				// warpPrint(" %d,\n", combined_x);
 				// warpPrint(" %d,\n", combined_y);
 				// warpPrint(" %d,\n", combined_z);
-				OSA_TimeDelay(200);
+				OSA_TimeDelay(50);//should be 200 for 10 secs
 			}
 			// for(size_t i=0; i<cycles;i++)
 			// {
@@ -1704,8 +1704,8 @@ main(void)
 			sum_z=0;
 			if (sd_x<=x_threshold_walk){
 				sum_x=x_threshold_walk-sd_x;
-				percentage_walk=(int)floor((sum_x/x_threshold_walk)*100);
-				percentage_stand=100-percentage_walk;
+				percentage_stand=(int)floor((sum_x/x_threshold_walk)*100);
+				percentage_walk=100-percentage_walk;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
 				warpPrint("Percentage its standing: %d,\n", percentage_stand);
 				if (percentage_stand>percentage_walk)
