@@ -194,14 +194,6 @@ stand(void){
 	//Commands for person standing or the word walk
 	//for(size_t i=0; i<50;i++){
 	// 
-	writeCommand(kSSD1331CommandDRAWLINE);
-	writeCommand(0x20);
-	writeCommand(0x20);
-	writeCommand(0x40);
-	writeCommand(0x40);
-	writeCommand(0x00);
-	writeCommand(0xFF);
-	writeCommand(0x00);
 	//}
 	writeCommand(kSSD1331CommandDRAWRECT);
 	writeCommand(0x00);
