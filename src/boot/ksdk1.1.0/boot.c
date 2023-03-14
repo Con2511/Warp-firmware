@@ -1722,11 +1722,14 @@ main(void)
 				
 			}
 			else{
-				sum_x=x_threshold_run-sum_y;
-				percentage_walk=(int)floor((sum_x/x_threshold_run)*100);
-				percentage_run=100-percentage_walk;
+				sum_x=exp(-pow((sum_y/100),2)/14);
+				sum_z=exp(-pow(((sum_y/100)-10),2)/200);
+				percentage_stand=(int)floor(sum_x*100);
+				percentage_walk=(int)floor(sum_z*100);
+				percentage_run=100-percentage_walk-percentage_stand;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
 				warpPrint("Percentage its running: %d,\n", percentage_run);
+				warpPrint("Percentage its standing: %d,\n", percentage_stand);
 				if (percentage_run>percentage_walk)
 				{
 					run();
