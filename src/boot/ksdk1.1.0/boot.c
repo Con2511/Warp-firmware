@@ -1705,7 +1705,7 @@ main(void)
 			sum_z=0;
 			sum_y=sqrt(pow(sd_x,2)+pow(sd_y,2)+pow(sd_z,2));
 			sd_z=(int)floor(sum_y);
-			warpPrint(sd_z);
+			warpPrint("combined %d, \n",sd_z);
 			if (sum_y<=x_threshold_walk){
 				sum_x=exp(-pow((sum_y/10),2)/14);
 				percentage_stand=(int)floor(sum_x*100);
