@@ -1488,7 +1488,7 @@ main(void)
 	 */
 	if (!WARP_BUILD_BOOT_TO_CSVSTREAM)
 	{
-		warpPrint("\n\n\n\rBooting Warp, in 3... ");
+		warpPrint("\n\n\n\rBooting Activity Classifier, in 3... ");
 		OSA_TimeDelay(1000);
 		warpPrint("2... ");
 		OSA_TimeDelay(1000);
@@ -1665,7 +1665,7 @@ main(void)
 				// warpPrint(" %d,\n", combined_x);
 				// warpPrint(" %d,\n", combined_y);
 				// warpPrint(" %d,\n", combined_z);
-				OSA_TimeDelay(25);//should be 200 for 10 secs
+				OSA_TimeDelay(15);//should be 200 for 10 secs
 			}
 			// for(size_t i=0; i<cycles;i++)
 			// {
