@@ -1640,13 +1640,13 @@ main(void)
 			int16_t y_store[cycles];
 			int16_t z_store[cycles];
 
-			uint16_t x_threshold_walk= 1000;
-			uint16_t x_threshold_run=5000;
+			uint16_t x_threshold_walk= 1150;
+			uint16_t x_threshold_run=3500;
 			int8_t percentage_walk;
 			int8_t percentage_stand;
 			int8_t percentage_run;
 
-			int8_t std_stand=14;
+			int8_t std_stand=37;
 			int8_t std_walk=75;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
@@ -1724,9 +1724,14 @@ main(void)
 				}
 				
 			}
+			if (sum_y>=x_threshold_run){
+				warpPrint("Percentage its running= 99,\n");
+				warpPrint("Percentage standing or walking= 1,\n");
+				run();
+			}
 			else{
 				sum_x=exp(-pow((sum_y/100),2)/std_stand);
-				sum_z=exp(-pow(((sum_y/100)-10),2)/(2*std_walk));
+				sum_z=exp(-pow(((sum_y/100)-11.5),2)/(2*std_walk));
 				percentage_stand=(int)floor(sum_x*100);
 				percentage_walk=(int)floor(sum_z*100);
 				percentage_run=100-percentage_walk-percentage_stand;
