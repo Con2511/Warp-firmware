@@ -1634,7 +1634,7 @@ main(void)
 			int16_t	  sd_y;
 			int16_t   sd_z;
 			
-			const int cycles = 85;
+			const int cycles = 75;
 			
 			int16_t x_store[cycles];
 			int16_t y_store[cycles];
