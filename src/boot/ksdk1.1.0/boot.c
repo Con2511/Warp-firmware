@@ -1645,6 +1645,8 @@ main(void)
 			int8_t percentage_walk;
 			int8_t percentage_stand;
 			int8_t percentage_run;
+			
+			int8_t count=0;
 
 			int8_t std_stand=37;
 			int8_t std_walk=75;
@@ -1660,6 +1662,9 @@ main(void)
 				y_store[i]=combined_y;
 				combined_z= (int16_t) printSensorDataMMA8451Q_z(0);
 				z_store[i]=combined_z;
+				if (combined_z>=4300){
+					count+=1;
+				}
 				//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 				// warpPrint(" %d,\n", i);
 				// warpPrint(" %d,\n", combined_x);
@@ -1685,6 +1690,7 @@ main(void)
 			mean_x=(int)floor(sum_x/cycles);
 			mean_y=(int)floor(sum_y/cycles);
 			mean_z=(int)floor(sum_z/cycles);
+			warpPrint("Step count: %d,\n",count);
 			warpPrint("Mean x: %d,\n", mean_x);
 			warpPrint("Mean y: %d,\n", mean_y);
 			warpPrint("Mean z: %d,\n", mean_z);
