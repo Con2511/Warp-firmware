@@ -1724,7 +1724,7 @@ main(void)
 				}
 				
 			}
-			if (sum_y>=x_threshold_run){
+			else if (sum_y>=x_threshold_run){
 				warpPrint("Percentage its running= 99,\n");
 				warpPrint("Percentage standing or walking= 1,\n");
 				run();
