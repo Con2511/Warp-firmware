@@ -1634,7 +1634,7 @@ main(void)
 			int16_t	  sd_y;
 			int16_t   sd_z;
 			
-			const int cycles = 50;
+			const int cycles = 75;
 			
 			int16_t x_store[cycles];
 			int16_t y_store[cycles];
@@ -1645,6 +1645,9 @@ main(void)
 			int8_t percentage_walk;
 			int8_t percentage_stand;
 			int8_t percentage_run;
+
+			int8_t std_stand=14;
+			int8_t std_walk=75;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
 			{
@@ -1662,7 +1665,7 @@ main(void)
 				// warpPrint(" %d,\n", combined_x);
 				// warpPrint(" %d,\n", combined_y);
 				// warpPrint(" %d,\n", combined_z);
-				OSA_TimeDelay(50);//should be 200 for 10 secs
+				OSA_TimeDelay(25);//should be 200 for 10 secs
 			}
 			// for(size_t i=0; i<cycles;i++)
 			// {
@@ -1707,7 +1710,7 @@ main(void)
 			sd_z=(int)floor(sum_y);
 			warpPrint("combined %d, \n",sd_z);
 			if (sum_y<=x_threshold_walk){
-				sum_x=exp(-pow((sum_y/100),2)/14);
+				sum_x=exp(-pow((sum_y/100),2)/std_stand);
 				percentage_stand=(int)floor(sum_x*100);
 				percentage_walk=100-percentage_stand;
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
@@ -1722,8 +1725,8 @@ main(void)
 				
 			}
 			else{
-				sum_x=exp(-pow((sum_y/100),2)/14);
-				sum_z=exp(-pow(((sum_y/100)-10),2)/200);
+				sum_x=exp(-pow((sum_y/100),2)/std_stand);
+				sum_z=exp(-pow(((sum_y/100)-10),2)/(2*std_walk));
 				percentage_stand=(int)floor(sum_x*100);
 				percentage_walk=(int)floor(sum_z*100);
 				percentage_run=100-percentage_walk-percentage_stand;
@@ -1738,12 +1741,6 @@ main(void)
 					walk();
 				}
 			}
-			// if (sd_x<=700){
-			// 	stand();
-			// }
-			// else{
-			// 	walk();
-			// }
 		}
 	#endif
 
