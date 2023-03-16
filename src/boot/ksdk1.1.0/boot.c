@@ -1670,8 +1670,8 @@ main(void)
 					smoothed_z_lst_lst=smoothed_z_lst;
 					smoothed_z_lst=smoothed_z;
 					smoothed_z=(int)floor(0.25*(z_store[i]+2*z_store[i-1]+z_store[i-2]));
-					if (smoothed_z_lst>smoothed_z){
-					 if(smoothed_z_lst>smoothed_z_lst_lst){
+					if ((smoothed_z_lst-300)>smoothed_z){
+					 if((smoothed_z_lst-300)>smoothed_z_lst_lst){
 						count+=1;
 					}
 					}
