@@ -1650,6 +1650,10 @@ main(void)
 
 			int8_t std_stand=37;
 			int8_t std_walk=75;
+
+			int16_t smoothed_z=0;
+			int16_t smoothed_z_lst=0;
+			int16_t smoothed_z_lst_lst=0;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
 			{
@@ -1662,8 +1666,15 @@ main(void)
 				y_store[i]=combined_y;
 				combined_z= (int16_t) printSensorDataMMA8451Q_z(0);
 				z_store[i]=combined_z;
-				if (combined_z>=4300){
-					count+=1;
+				if (i>=2){
+					smoothed_z_lst_lst=smoothed_z_lst;
+					smoothed_z_lst=smoothed_z;
+					smoothed_z=(int)floor(0.25*(z_store[i]+2*z_store[i-1]+z_store[i-2]));
+					if (smoothed_z_lst>smoothed_z){
+					 if(smoothed_z_lst>smoothed_z_lst_lst){
+						count+=1;
+					}
+					}
 				}
 				//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 				// warpPrint(" %d,\n", i);
