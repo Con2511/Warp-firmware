@@ -1670,8 +1670,8 @@ main(void)
 					smoothed_z_lst_lst=smoothed_z_lst;
 					smoothed_z_lst=smoothed_z;
 					smoothed_z=(int)floor(0.25*(z_store[i]+2*z_store[i-1]+z_store[i-2]));
-					if ((smoothed_z_lst-200)>smoothed_z){
-					 if((smoothed_z_lst-200)>smoothed_z_lst_lst){
+					if ((smoothed_z_lst-100)>smoothed_z){
+					 if((smoothed_z_lst-100)>smoothed_z_lst_lst){
 						count+=1;
 					}
 					}
@@ -1752,6 +1752,9 @@ main(void)
 				percentage_stand=(int)floor(sum_x*100);
 				percentage_walk=(int)floor(sum_z*100);
 				percentage_run=100-percentage_walk-percentage_stand;
+				if (percentage_run<=0){
+					percentage_run=0;
+				}
 				warpPrint("Percentage its walking: %d,\n", percentage_walk);
 				warpPrint("Percentage its running: %d,\n", percentage_run);
 				warpPrint("Percentage its standing: %d,\n", percentage_stand);
