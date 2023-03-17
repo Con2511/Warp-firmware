@@ -1610,7 +1610,7 @@ main(void)
 				}
 				//percent_step=percent_step-15;
 				
-				count=count/2;
+				//count=count/2;
 				//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 				// warpPrint(" %d,\n", i);
 				// warpPrint(" %d,\n", combined_x);
@@ -1636,7 +1636,7 @@ main(void)
 			mean_x=(int)floor(sum_x/cycles);
 			mean_y=(int)floor(sum_y/cycles);
 			mean_z=(int)floor(sum_z/cycles);
-			warpPrint("Step count: %d,\n",count);
+			warpPrint("Step count x2 : %d,\n",count);
 			warpPrint("step certainty;%d,\n",percent_step);
 			warpPrint("Mean x: %d,\n", mean_x);
 			warpPrint("Mean y: %d,\n", mean_y);
