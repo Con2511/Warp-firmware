@@ -1608,7 +1608,7 @@ main(void)
 				if (percent_step>100){
 					percent_step=100;
 				}
-				percent_step=percent_step-15;
+				//percent_step=percent_step-15;
 				
 				count=count/2;
 				//warpPrint(" %d,", printSensorDataMMA8451Q(0));
