@@ -1572,7 +1572,7 @@ main(void)
 			int16_t smoothed_z_lst=0;
 			int16_t smoothed_z_lst_lst=0;
 
-			int8_t percent_step=0;
+			int8_t percent_step=100;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
 			{
@@ -1593,19 +1593,21 @@ main(void)
 					 if((smoothed_z_lst-100)>smoothed_z_lst_lst){
 						count+=1;
 						if ((smoothed_z_lst-275>smoothed_z)){
-							percent_step+= 25;
-							if (percent_step>100){
-								percent_step=100;
-							}
+							percent_step+= 10;
+							
 						}
-						if ((smoothed_z_lst-175<smoothed_z)){
-							percent_step-=5;
-							if (percent_step<0){
-								percent_step=0;
-							}
+						if ((smoothed_z_lst-150<smoothed_z)){
+							percent_step-=15;
+							
 						}
 					}
 					}
+				}
+				if (percent_step>100){
+					percent_step=100;
+				}
+				if (percent_step<0){
+					percent_step=0;
 				}
 				//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 				// warpPrint(" %d,\n", i);
