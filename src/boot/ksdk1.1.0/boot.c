@@ -1094,30 +1094,6 @@ warpLowPowerSecondsSleep(uint32_t sleepSeconds, bool forceAllPinsIntoLowPowerSta
 	}
 }
 
-
-/*
-void
-printPinDirections(void)
-{
-	warpPrint("I2C0_SDA:%d\n", GPIO_DRV_GetPinDir(kWarpPinI2C0_SDA_UART_RX));
-	OSA_TimeDelay(100);
-	warpPrint("I2C0_SCL:%d\n", GPIO_DRV_GetPinDir(kWarpPinI2C0_SCL_UART_TX));
-	OSA_TimeDelay(100);
-	warpPrint("SPI_MOSI:%d\n", GPIO_DRV_GetPinDir(kWarpPinSPI_MOSI_UART_CTS));
-	OSA_TimeDelay(100);
-	warpPrint("SPI_MISO:%d\n", GPIO_DRV_GetPinDir(kWarpPinSPI_MISO_UART_RTS));
-	OSA_TimeDelay(100);
-	warpPrint("SPI_SCK_I2C_PULLUP_EN:%d\n", GPIO_DRV_GetPinDir(kWarpPinSPI_SCK_I2C_PULLUP_EN));
-	OSA_TimeDelay(100);
-	warpPrint("ADXL362_CS:%d\n", GPIO_DRV_GetPinDir(kWarpPinADXL362_CS));
-	OSA_TimeDelay(100);
-}
-*/
-
-
-
-
-
 void
 printBootSplash(uint16_t gWarpCurrentSupplyVoltage, uint8_t menuRegisterAddress, WarpPowerManagerCallbackStructure *  powerManagerCallbackStructure)
 {
@@ -1552,15 +1528,6 @@ main(void)
 	warpPrint("done.\n");
 
 	/*
-	 *	Toggle LED3 (kWarpPinSI4705_nRST on Warp revB, kGlauxPinLED on Glaux)
-	 */
-	#if (WARP_BUILD_ENABLE_GLAUX_VARIANT)
-		blinkLED(kGlauxPinLED);
-		blinkLED(kGlauxPinLED);
-		blinkLED(kGlauxPinLED);
-	#endif
-
-	/*
 	 *	Initialize all the sensors
 	 */
 	devSSD1331init(); /*Place here to turn on screen, so current measurement can be done in the if statement for ease (don't need to mess with menus)*/
@@ -1604,6 +1571,8 @@ main(void)
 			int16_t smoothed_z=0;
 			int16_t smoothed_z_lst=0;
 			int16_t smoothed_z_lst_lst=0;
+
+			int8_t percent_step=0;
 			//warpPrint("x-acceleration, y-acceleration, z-acceleration, reading,\n");	
 			for (size_t i=0; i<cycles; i++)
 			{
@@ -1620,9 +1589,15 @@ main(void)
 					smoothed_z_lst_lst=smoothed_z_lst;
 					smoothed_z_lst=smoothed_z;
 					smoothed_z=(int)floor(0.25*(z_store[i]+2*z_store[i-1]+z_store[i-2]));
-					if ((smoothed_z_lst-50)>smoothed_z){
-					 if((smoothed_z_lst-50)>smoothed_z_lst_lst){
+					if ((smoothed_z_lst-75)>smoothed_z){
+					 if((smoothed_z_lst-75)>smoothed_z_lst_lst){
 						count+=1;
+						if ((smoothed_z-275>smoothed_z)){
+							percent_step+= 2;
+							if (percent_step>100){
+								percent_step=100;
+							}
+						}
 					}
 					}
 				}
