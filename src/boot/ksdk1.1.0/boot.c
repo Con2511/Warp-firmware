@@ -1589,13 +1589,19 @@ main(void)
 					smoothed_z_lst_lst=smoothed_z_lst;
 					smoothed_z_lst=smoothed_z;
 					smoothed_z=(int)floor(0.25*(z_store[i]+2*z_store[i-1]+z_store[i-2]));
-					if ((smoothed_z_lst-75)>smoothed_z){
-					 if((smoothed_z_lst-75)>smoothed_z_lst_lst){
+					if ((smoothed_z_lst-100)>smoothed_z){
+					 if((smoothed_z_lst-100)>smoothed_z_lst_lst){
 						count+=1;
-						if ((smoothed_z-275>smoothed_z)){
-							percent_step+= 2;
+						if ((smoothed_z_lst-275>smoothed_z)){
+							percent_step+= 25;
 							if (percent_step>100){
 								percent_step=100;
+							}
+						}
+						if ((smoothed_z_lst-175<smoothed_z)){
+							percent_step-=5;
+							if (percent_step<0){
+								percent_step=0;
 							}
 						}
 					}
@@ -1627,6 +1633,7 @@ main(void)
 			mean_y=(int)floor(sum_y/cycles);
 			mean_z=(int)floor(sum_z/cycles);
 			warpPrint("Step count: %d,\n",count);
+			warpPrint("step certainty;%d,\n",percent_step);
 			warpPrint("Mean x: %d,\n", mean_x);
 			warpPrint("Mean y: %d,\n", mean_y);
 			warpPrint("Mean z: %d,\n", mean_z);
