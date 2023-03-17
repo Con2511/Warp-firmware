@@ -1598,7 +1598,9 @@ main(void)
 						}
 						if ((smoothed_z_lst-150<smoothed_z)){
 							percent_step-=15;
-							
+							if (percent_step<0){
+								percent_step=0;
+							}
 						}
 					}
 					}
@@ -1606,11 +1608,9 @@ main(void)
 				if (percent_step>100){
 					percent_step=100;
 				}
-				percent_step-=15;
-				if (percent_step<0){
-					percent_step=0;
-				}
-				count=(int)floor(count/2);
+				percent_step=percent_step-15;
+				
+				count=count/2;
 				//warpPrint(" %d,", printSensorDataMMA8451Q(0));
 				// warpPrint(" %d,\n", i);
 				// warpPrint(" %d,\n", combined_x);
